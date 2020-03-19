@@ -2,8 +2,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.sixro</groupId>
     <artifactId>themissingobjects</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
+    <version>0.0.7-SNAPSHOT</version>
 
+    <name>The missing objects</name>
+    <description>A small library containing java objects I am missing the most </description>
+    <url>https://github.com/sixro/themissingobjects</url>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
