@@ -1,5 +1,6 @@
 package themissedobjects.time;
 
+import java.io.Serializable;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
@@ -27,7 +28,9 @@ import java.util.Objects;
  * @author Roberto Simoni
  * @since 1.0
  */
-public class Interval<T extends Temporal> {
+public class Interval<T extends Temporal> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private static final Map<Class<? extends Temporal>, ChronoUnit> TEMPORAL_UNIT_BY_TEMPORAL = newTemporalUnitByTemporal();
 
