@@ -17,7 +17,7 @@ import java.util.Objects;
  */
 public class Percentage implements Comparable<Percentage>, Serializable {
 
-    private static final long serialVersionUid = 1L;
+    private static final long serialVersionUID = 1L;
 
     private static final BigDecimal _100 = BigDecimal.valueOf(100);
 

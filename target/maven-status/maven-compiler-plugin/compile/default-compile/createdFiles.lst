@@ -1,0 +1,5 @@
+themissedobjects\finance\ExchangeRate.class
+themissedobjects\time\Interval.class
+themissedobjects\finance\ExchangeService.class
+themissedobjects\finance\ISIN.class
+themissedobjects\finance\Money.class
