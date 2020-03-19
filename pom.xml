@@ -34,11 +34,11 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git://github.com/sixro/themissingobjects.git</connection>
-        <developerConnection>scm:git:ssh://github.com:sixro/themissingobjects.git</developerConnection>
-        <url>http://github.com/sixro/themissingobjects/tree/master</url>
-      <tag>themissingobjects-0.0.1</tag>
-  </scm>
+        <connection>scm:git:git@github.com:sixro/themissingobjects.git</connection>
+        <developerConnection>scm:git:git@github.com:sixro/themissingobjects.git</developerConnection>
+        <url>git@github.com:sixro/themissingobjects.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <distributionManagement>
         <snapshotRepository>
