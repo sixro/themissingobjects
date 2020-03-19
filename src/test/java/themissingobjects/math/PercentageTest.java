@@ -1,4 +1,4 @@
-package themissedobjects.math;
+package themissingobjects.math;
 
 import org.junit.Test;
 

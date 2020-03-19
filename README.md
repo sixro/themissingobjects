@@ -1,5 +1,5 @@
-# the missed objects
+# the missing objects
 
-A small library containing Java objects I miss the most.
+A small library containing Java objects I'm missing the most.
 
 

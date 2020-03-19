@@ -1,4 +1,4 @@
-package themissedobjects.math;
+package themissingobjects.math;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package themissedobjects.finance;
+package themissingobjects.finance;
 
 public interface ExchangeService {
 }
