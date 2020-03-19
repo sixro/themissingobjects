@@ -1,5 +1,6 @@
-themissedobjects\finance\ExchangeRate.class
-themissedobjects\time\Interval.class
-themissedobjects\finance\ExchangeService.class
-themissedobjects\finance\ISIN.class
-themissedobjects\finance\Money.class
+themissingobjects\finance\ISIN.class
+themissingobjects\finance\Money.class
+themissingobjects\time\Interval.class
+themissingobjects\math\Percentage.class
+themissingobjects\finance\ExchangeService.class
+themissingobjects\finance\ExchangeRate.class

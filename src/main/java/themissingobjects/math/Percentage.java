@@ -103,6 +103,8 @@ public class Percentage implements Comparable<Percentage>, Serializable {
      * Returns the number calculated applying this percentage to the specified value using the specified scale and rounding mode.
      *
      * @param v the starting value on which this percentage has to be applied
+     * @param scale the scale to use on the calculated value
+     * @param roundingMode the rounding mode to apply
      * @return the number calculated applying this percentage
      */
     public BigDecimal of(BigDecimal v, int scale, RoundingMode roundingMode) {
