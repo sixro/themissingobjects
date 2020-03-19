@@ -3,5 +3,5 @@
 A small library containing Java objects I'm missing the most.
 
 ```
-mvn clean deploy -Prelease
+mvn -B release:prepare release:perform
 ```
