@@ -13,7 +13,7 @@ import java.util.Objects;
  * Represents an interval of {@code Temporal}s.
  *
  * <p>
- * Because it is based on {@code Temporal}, you can use {@code LocalDate}, {@code ZonedDateTime}, {@code Instant} or even {@Year}...
+ * Because it is based on {@code Temporal}, you can use {@code LocalDate}, {@code ZonedDateTime}, {@code Instant} or even {@code Year}...
  * </p>
  * <p>
  * The textual representation uses a ISO-8601 format that in date 2019 is in draft state yet, but it is clear:
