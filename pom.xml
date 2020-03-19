@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.sixro</groupId>
     <artifactId>themissingobjects</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,8 +34,8 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:sixro/themissingobjects.git</connection>
-        <developerConnection>scm:git:git@github.com:sixro/themissingobjects.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com/sixro/themissingobjects.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/sixro/themissingobjects.git</developerConnection>
         <url>git@github.com:sixro/themissingobjects.git</url>
         <tag>v0.0.2</tag>
     </scm>
