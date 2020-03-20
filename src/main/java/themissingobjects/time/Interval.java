@@ -25,7 +25,7 @@ import java.util.Objects;
  *
  * @param <T> a Temporal
  *
- * @author Roberto Simoni
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
 public class Interval<T extends Temporal> implements Serializable {
@@ -79,6 +79,20 @@ public class Interval<T extends Temporal> implements Serializable {
             long fromT = from.until(t, temporalUnit);
             return fromT >= 0;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Interval<?> interval = (Interval<?>) o;
+        return Objects.equals(from, interval.from) &&
+                Objects.equals(to, interval.to);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(from, to);
     }
 
     @Override

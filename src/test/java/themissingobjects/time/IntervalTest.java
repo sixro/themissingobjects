@@ -89,4 +89,8 @@ public class IntervalTest {
         assertEquals("../2020-03-01", Interval.endingTo(LocalDate.parse("2020-03-01")).toString());
         assertEquals("../2020", Interval.endingTo(Year.of(2020)).toString());
     }
+
+    @Test public void equality() {
+        assertEquals(Interval.between(Year.of(2010), Year.of(2020)), Interval.between(Year.of(2010), Year.of(2020)));
+    }
 }

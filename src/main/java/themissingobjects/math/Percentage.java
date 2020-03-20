@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * Represents a <a href="https://en.wikipedia.org/wiki/Percentage" >percentage</a> useful to make your core domain more expressive.
  *
- * @author Roberto Simoni
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
 public class Percentage implements Comparable<Percentage>, Serializable {
@@ -147,12 +147,17 @@ public class Percentage implements Comparable<Percentage>, Serializable {
     }
 
     private static Map<Integer, Percentage> newCachedPercentages() {
-        Map<Integer, Percentage> map = new HashMap<>(101);
-        for (int i = 0; i <= 100; i += 5) {
-            BigDecimal p = BigDecimal.valueOf(i).divide(_100, 2, RoundingMode.HALF_UP);
-            map.put(i, new Percentage(p));
-        }
+        Map<Integer, Percentage> map = new HashMap<>(25);
+        for (int i = 0; i < 100; i += 5)
+            storePercentage(map, i);
+        storePercentage(map, 100);
+        storePercentage(map, 200);
         return map;
+    }
+
+    private static void storePercentage(Map<Integer, Percentage> map, int i) {
+        BigDecimal p = BigDecimal.valueOf(i).divide(_100, 2, RoundingMode.HALF_UP);
+        map.put(i, new Percentage(p));
     }
 
 }
