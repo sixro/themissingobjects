@@ -1,6 +1,9 @@
 the missing objects
 =====================
 
+![](https://github.com/sixro/themissingobjects/workflows/Java%20CI%20with%20Maven/badge.svg)
+
+
 Summary
 ---------
 
