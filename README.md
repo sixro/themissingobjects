@@ -12,7 +12,10 @@ Summary
 <a name="introduction" />Introduction
 ---------------------------------------
 
-A small library containing Java objects I'm missing the most.
+A small library containing Java objects I'm missing the most.  
+I wrote these objects at least twice in all my life... sometime more.  
+Sometime I was using an object provided by a library (e.g. the `Interval` object provided by JodaTime that is missing in new Java8 Time).  
+Sometime I wrote these object again and again just as a learning path... a sort of [Object Chalistenics](https://pragprog.com/book/twa/thoughtworks-anthology).
 
 Some objects contained in this library are `Money`, `Interval`, `Percentage`, `ISIN`, `ExchangeRate`, etc...  
 The main characteristic of these objects is that they represent a specific unique concept 
