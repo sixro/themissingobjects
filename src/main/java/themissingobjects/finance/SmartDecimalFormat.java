@@ -115,6 +115,12 @@ public class SmartDecimalFormat extends DecimalFormat {
             System.out.println("currency: " + c + "; symbol: " + c.getSymbol(locale));
             currencyBySymbol.put(c.getSymbol(locale), c);
         }
+
+        // TODO add other known symbols
+        currencyBySymbol.put("€", Currency.getInstance("EUR"));
+        currencyBySymbol.put("£", Currency.getInstance("GBP"));
+        currencyBySymbol.put("$", Currency.getInstance("USD"));
+
         Currency currency = currencyBySymbol.get(currencySymbol);
         System.out.println("... returning " + currency);
         return currency;
