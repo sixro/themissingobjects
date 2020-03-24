@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  * If this is true, even the {@code format} should fail.
  * </p>
  * <p>
- * {@code SmartDecimalFormat} is able to parse the following representations:
+ * {@code SmartDecimalFormat} is able to parse the following representations in {@code Locale.US}:
  * </p>
  * <code>
  * €1.23
