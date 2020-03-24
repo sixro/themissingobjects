@@ -24,7 +24,7 @@ import java.util.*;
  * This class is basically working like {@code FastMoney} provided by <a href="https://javamoney.github.io/ri.html">Moneta</a> (the reference implementation of JavaMoney</a>.<br/>
  * The problem with that library is that I think it is quite complex for what we really need.<br/>
  * Usually I need just a class to represent money used in applications with a little bit of accounting in there.<br/>
- * I don't need different implementations.<br/>
+ * I don't need an interface with different implementations.<br/>
  * So I wrote this 'cause this is another object I am missing the most.
  * </p>
  *
