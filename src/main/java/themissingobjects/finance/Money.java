@@ -10,9 +10,9 @@ import java.util.*;
  *
  * <p>According to this page about <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> every currency
  * supports a specific number of fraction digits.<br>
- * This implementation of {@code Money} internally uses a {@code long} to represents the value and
- * fraction digits are part of it so that a {@code 12.34 EUR} has its value stored as {@code 1234},
- * while {@code 12.34 BHD} ("Bahraini dinar" supporting 3 fraction digits) has its value stored as {@code 12340}.
+ * This implementation of {@code Money} internally uses a {@code long} to represents the value.
+ * Fraction digits are part of this internal value so that a {@code 12.34 EUR} is internally stored as {@code 1234},
+ * while {@code 12.34 BHD} ("Bahraini dinar" supporting 3 fraction digits) is internally stored as {@code 12340}.
  * </p>
  * <p>
  * Because it is difficult to know how many fraction digits you should specify to the constructor, it is better
