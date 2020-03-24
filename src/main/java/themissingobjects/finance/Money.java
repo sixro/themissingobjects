@@ -12,12 +12,12 @@ import java.util.*;
  * supports a specific number of fraction digits.<br/>
  * This implementation of {@code Money} internally uses a {@code long} to represents the value and
  * fraction digits are part of it so that a {@code 12.34 EUR} has its value stored as {@code 1234},
- * while {@code 12.34 BHD} ("Bahraini dinar" supporting 3 fraction digits) has its value stored as {@code 12340 }.
+ * while {@code 12.34 BHD} ("Bahraini dinar" supporting 3 fraction digits) has its value stored as {@code 12340}.
  * </p>
  * <p>
  * Because it is difficult to know how many fraction digits you should specify to the constructor, it is better
  * to use one of the provided factory methods such as the one using {@code BigDecimal}, {@code int} or
- * the {@code parse} method able to parse a money represented by text in US localization (e.g. {@code €12.34}).
+ * the {@code parse} method able to parse a money represented by text a specific locale (or in the default one).
  * </p>
  *
  * <p>
