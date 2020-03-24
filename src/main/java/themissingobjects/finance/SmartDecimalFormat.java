@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  * </code>
  * <p>
  * it will fail for a {@code ParseException}, but if you change the currency
- * to {@code USD} or {@code GBP} it will work.<br/>
+ * to {@code USD} or {@code GBP} it will work.<br>
  * Lots of people explain this behaviour saying that it is right because it depends on the locale.
  * If this is true, even the {@code format} should fail.
  * </p>

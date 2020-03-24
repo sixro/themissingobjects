@@ -9,7 +9,7 @@ import java.util.*;
  * Represents monetary values.
  *
  * <p>According to this page about <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> every currency
- * supports a specific number of fraction digits.<br/>
+ * supports a specific number of fraction digits.<br>
  * This implementation of {@code Money} internally uses a {@code long} to represents the value and
  * fraction digits are part of it so that a {@code 12.34 EUR} has its value stored as {@code 1234},
  * while {@code 12.34 BHD} ("Bahraini dinar" supporting 3 fraction digits) has its value stored as {@code 12340}.
@@ -21,10 +21,11 @@ import java.util.*;
  * </p>
  *
  * <p>
- * This class is basically working like {@code FastMoney} provided by <a href="https://javamoney.github.io/ri.html">Moneta</a> (the reference implementation of JavaMoney</a>.<br/>
- * The problem with that library is that I think it is quite complex for what we really need.<br/>
- * Usually I need just a class to represent money used in applications with a little bit of accounting in there.<br/>
- * I don't need an interface with different implementations.<br/>
+ * This class is basically working like {@code FastMoney} provided by <a href="https://javamoney.github.io/ri.html">Moneta</a>
+ * (the reference implementation of JavaMoney).<br>
+ * The problem with that library is that I think it is quite complex for what we really need.<br>
+ * Usually I need just a class to represent money used in applications with a little bit of accounting in there.<br>
+ * I don't need an interface with different implementations.<br>
  * So I wrote this 'cause this is another object I am missing the most.
  * </p>
  *
