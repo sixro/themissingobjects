@@ -4,9 +4,6 @@ import org.junit.Test;
 import themissingobjects.math.BigDecimalAsserts;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Currency;
 import java.util.Locale;
@@ -67,6 +64,10 @@ public class MoneyTest {
         assertEquals(new Money(123, EUR), Money.parse("1.23EUR", Locale.US));
         assertEquals(new Money(123, EUR), Money.parse("1,23EUR", Locale.ITALY));
         assertEquals(new Money(123, EUR), Money.parse("EUR1.23", Locale.US));
+    }
+
+    @Test public void toBigDecimal() throws ParseException {
+        BigDecimalAsserts.assertBigDecimalEquals("toBigDecimal", new BigDecimal("1.230"), Money.parse("€1.23", Locale.US).toBigDecimal());
     }
 
 }

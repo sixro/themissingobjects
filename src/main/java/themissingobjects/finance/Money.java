@@ -84,10 +84,29 @@ public class Money {
         return new Money(valueWithoutFractionDigits * m, currency);
     }
 
+    /**
+     * Returns a {@code Money} parsing the specified text in the default {@link Locale}.
+     *
+     * @param text a text
+     * @return a {@code Money}
+     * @throws ParseException if text cannot be parsed
+     *
+     * @see SmartDecimalFormat
+     */
     public static Money parse(String text) throws ParseException {
         return parse(text, Locale.getDefault());
     }
 
+    /**
+     * Returns a {@code Money} parsing the specified text in the specified {@link Locale}.
+     *
+     * @param text a text
+     * @param locale a {@link Locale}
+     * @return a {@code Money}
+     * @throws ParseException if text cannot be parsed
+     *
+     * @see SmartDecimalFormat
+     */
     public static Money parse(String text, Locale locale) throws ParseException {
         DecimalFormat df = new SmartDecimalFormat("¤#,##0.###", locale);
         df.setParseBigDecimal(true);
@@ -95,22 +114,46 @@ public class Money {
         return Money.valueOf(parsed, df.getCurrency());
     }
 
+    /**
+     * Returns the sum of this money and the specified one.
+     *
+     * @param that another money
+     * @return the sum of this money and the specified one
+     */
     public Money plus(Money that) {
         if (! currency.equals(that.currency))
             throw new IllegalArgumentException("currency must be " + currency + " (found " + that.currency + ")");
         return new Money(value + that.value, currency);
     }
 
+    /**
+     * Returns the subtraction of this money and the specified one.
+     *
+     * @param that another money
+     * @return the subtraction of this money and the specified one
+     */
     public Money minus(Money that) {
         if (! currency.equals(that.currency))
             throw new IllegalArgumentException("currency must be " + currency + " (found " + that.currency + ")");
         return new Money(value - that.value, currency);
     }
 
+    /**
+     * Returns the result of multiplying this money for the specified multiplier.
+     *
+     * @param multiplier a multiplier
+     * @return the result of multiplying this money for the specified multiplier.
+     */
     public Money times(int multiplier) {
         return new Money(value * multiplier, currency);
     }
 
+    /**
+     * Returns the result of multiplying this money for the specified multiplier.
+     *
+     * @param multiplier a multiplier
+     * @return the result of multiplying this money for the specified multiplier.
+     */
     public Money times(BigDecimal multiplier) {
         return new Money(BigDecimal.valueOf(value).multiply(multiplier).longValue(), currency);
     }
@@ -129,18 +172,31 @@ public class Money {
         return Objects.hash(value, currency);
     }
 
+    /**
+     * Returns this money as a {@link BigDecimal}.
+     *
+     * @return a {@link BigDecimal}
+     */
+    public BigDecimal toBigDecimal() {
+        int fractionDigits = currency.getDefaultFractionDigits();
+        return BigDecimal.valueOf(value).movePointLeft(fractionDigits);
+    }
+
     @Override
     public String toString() {
         return toString(Locale.getDefault());
     }
 
+    /**
+     * Returns this money represented in the specified {@link Locale} (e.g. {@code €1.23}).
+     *
+     * @param locale a {@link Locale}
+     * @return a textual representation of this money
+     */
     public String toString(Locale locale) {
-        int fractionDigits = currency.getDefaultFractionDigits();
-        BigDecimal v = BigDecimal.valueOf(value).movePointLeft(fractionDigits);
-
         DecimalFormat df = new SmartDecimalFormat(newPattern(currency.getDefaultFractionDigits()), locale);
         df.setCurrency(currency);
-        return df.format(v);
+        return df.format(toBigDecimal());
     }
 
     private String newPattern(int fractionDigits) {
