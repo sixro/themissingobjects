@@ -40,6 +40,9 @@ import java.util.regex.Pattern;
  * EUR1.23
  * 1.23EUR
  * </code>
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
  */
 public class SmartDecimalFormat extends DecimalFormat {
 
