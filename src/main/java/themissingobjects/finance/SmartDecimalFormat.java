@@ -73,7 +73,6 @@ public class SmartDecimalFormat extends DecimalFormat {
         String group2 = matcher.group(2);
         String group3 = matcher.group(3);
 
-        System.out.println("Parsed: " + group1 + "; " + group2 + "; " + group3);
         String currencyAsText = group1.trim().length() > 0 ? group1.trim() : group3.trim();
         if (currencyAsText.isEmpty())
             return super.parse(source);
@@ -89,11 +88,9 @@ public class SmartDecimalFormat extends DecimalFormat {
         String originalPattern = toPattern();
         try {
             applyPattern(originalPattern.replace("¤", ""));
-            System.out.println("... parsing: " + numberAsText);
 
             parsed = super.parse(numberAsText);
 
-            System.out.println("currencyAsText: " + currencyAsText);
             Currency currency = (currencyAsText.length() == 3)
                 ? Currency.getInstance(currencyAsText)
                 : currencyBySymbol(currencyAsText, locale);
@@ -107,14 +104,10 @@ public class SmartDecimalFormat extends DecimalFormat {
 
     // TODO optimize 'cause this is bad
     public static Currency currencyBySymbol(String currencySymbol, Locale locale) {
-        System.out.println("returning currency of symbol '" + currencySymbol + "' in locale " + locale + " (default locale is: " + Locale.getDefault() + ")");
         Set<Currency> currencies = Currency.getAvailableCurrencies();
-        System.out.println("Available currencies: " + currencies);
         Map<String, Currency> currencyBySymbol = new HashMap<>();
-        for (Currency c: currencies) {
-            System.out.println("currency: " + c + "; symbol: " + c.getSymbol(locale));
+        for (Currency c: currencies)
             currencyBySymbol.put(c.getSymbol(locale), c);
-        }
 
         // TODO add other known symbols
         currencyBySymbol.put("€", Currency.getInstance("EUR"));
@@ -122,7 +115,6 @@ public class SmartDecimalFormat extends DecimalFormat {
         currencyBySymbol.put("$", Currency.getInstance("USD"));
 
         Currency currency = currencyBySymbol.get(currencySymbol);
-        System.out.println("... returning " + currency);
         return currency;
     }
 
