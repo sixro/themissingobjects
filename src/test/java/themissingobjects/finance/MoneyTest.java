@@ -1,8 +1,13 @@
 package themissingobjects.finance;
 
 import org.junit.Test;
+import themissingobjects.math.BigDecimalAsserts;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Currency;
 import java.util.Locale;
 
@@ -41,10 +46,27 @@ public class MoneyTest {
     }
 
     @Test public void textual_representation() {
-        assertEquals("€1,234.56", new Money(123456, EUR).toString());
-        assertEquals("£1,234.56", new Money(123456, GBP).toString());
-        assertEquals("$1,234.56", new Money(123456, USD).toString());
-        assertEquals("BHD123.456", new Money(123456, Currency.getInstance("BHD")).toString());
+        assertEquals("€1,234.56", new Money(123456, EUR).toString(Locale.US));
+        assertEquals("£1,234.56", new Money(123456, GBP).toString(Locale.US));
+        assertEquals("$1,234.56", new Money(123456, USD).toString(Locale.US));
+        assertEquals("USD1.234,56", new Money(123456, USD).toString(Locale.ITALY));
+        assertEquals("BHD123.456", new Money(123456, Currency.getInstance("BHD")).toString(Locale.US));
+    }
+
+    @Test public void created_by_bigdecimal() {
+        assertEquals(new Money(1000, EUR), Money.valueOf(BigDecimal.TEN, EUR));
+    }
+
+    @Test public void created_by_int() {
+        assertEquals(new Money(100, EUR), Money.valueOf(1, EUR));
+    }
+
+    @Test public void parse() throws ParseException {
+        assertEquals(new Money(123, EUR), Money.parse("€1.23", Locale.US));
+        assertEquals(new Money(123, EUR), Money.parse("1.23€", Locale.US));
+        assertEquals(new Money(123, EUR), Money.parse("1.23EUR", Locale.US));
+        assertEquals(new Money(123, EUR), Money.parse("1,23EUR", Locale.ITALY));
+        assertEquals(new Money(123, EUR), Money.parse("EUR1.23", Locale.US));
     }
 
 }
