@@ -43,7 +43,9 @@ public class MoneyTest {
     }
 
     @Test public void textual_representation() {
-        assertEquals("€1,234.56", new Money(123456, EUR).toString(Locale.US));
+        String text = new Money(123456, EUR).toString(Locale.US);
+        // NOTE: unfortunately Java does not guarantee the same behaviour even if you specify the Locale.
+        assertTrue(text.equals("€1,234.56") || text.equals("EUR1,234.56"));
         assertEquals("£1,234.56", new Money(123456, GBP).toString(Locale.US));
         assertEquals("$1,234.56", new Money(123456, USD).toString(Locale.US));
         assertEquals("USD1.234,56", new Money(123456, USD).toString(Locale.ITALY));
