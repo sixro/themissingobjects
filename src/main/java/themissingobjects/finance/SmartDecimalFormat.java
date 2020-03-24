@@ -73,6 +73,7 @@ public class SmartDecimalFormat extends DecimalFormat {
         String group2 = matcher.group(2);
         String group3 = matcher.group(3);
 
+        System.out.println("Parsed: " + group1 + "; " + group2 + "; " + group3);
         String currencyAsText = group1.trim().length() > 0 ? group1.trim() : group3.trim();
         if (currencyAsText.isEmpty())
             return super.parse(source);
@@ -88,8 +89,11 @@ public class SmartDecimalFormat extends DecimalFormat {
         String originalPattern = toPattern();
         try {
             applyPattern(originalPattern.replace("¤", ""));
+            System.out.println("... parsing: " + numberAsText);
+
             parsed = super.parse(numberAsText);
 
+            System.out.println("currencyAsText: " + currencyAsText);
             Currency currency = (currencyAsText.length() == 3)
                 ? Currency.getInstance(currencyAsText)
                 : currencyBySymbol(currencyAsText, locale);
