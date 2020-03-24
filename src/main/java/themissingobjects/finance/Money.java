@@ -17,7 +17,7 @@ import java.util.*;
  * <p>
  * Because it is difficult to know how many fraction digits you should specify to the constructor, it is better
  * to use one of the provided factory methods such as the one using {@code BigDecimal}, {@code int} or
- * the {@code parse} method able to parse a money represented by text a specific locale (or in the default one).
+ * the {@code parse} method able to parse a money represented by text in a specific locale (or in the default one).
  * </p>
  *
  * <p>

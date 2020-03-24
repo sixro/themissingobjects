@@ -15,15 +15,15 @@ import java.util.regex.Pattern;
  * The short story is that if you execute the following code:
  * </p>
  * <code>
- *     BigDecimal value = new BigDecimal("1.23");
- *
- *     DecimalFormat df = new DecimalFormat("¤#,##0.00", new DecimalFormatSymbols(Locale.US));
- *     df.setCurrency(Currency.getInstance("EUR"));
- *     String text = df.format(value);
- *
- *     DecimalFormat df2 = new DecimalFormat("¤#,##0.00", new DecimalFormatSymbols(Locale.US));
- *     df2.setParseBigDecimal(true);
- *     df2.parse(text);
+ *     BigDecimal value = new BigDecimal("1.23");<br>
+ *     <br>
+ *     DecimalFormat df = new DecimalFormat("¤#,##0.00", new DecimalFormatSymbols(Locale.US));<br>
+ *     df.setCurrency(Currency.getInstance("EUR"));<br>
+ *     String text = df.format(value);<br>
+ *     <br>
+ *     DecimalFormat df2 = new DecimalFormat("¤#,##0.00", new DecimalFormatSymbols(Locale.US));<br>
+ *     df2.setParseBigDecimal(true);<br>
+ *     df2.parse(text);<br>
  * </code>
  * <p>
  * it will fail for a {@code ParseException}, but if you change the currency
@@ -35,10 +35,10 @@ import java.util.regex.Pattern;
  * {@code SmartDecimalFormat} is able to parse the following representations in {@code Locale.US}:
  * </p>
  * <code>
- * €1.23
- * 1.23€
- * EUR1.23
- * 1.23EUR
+ *     €1.23<br>
+ *     1.23€<br>
+ *     EUR1.23<br>
+ *     1.23EUR<br>
  * </code>
  *
  * @author <a href="mailto:me@sixro.net" >Sixro</a>
