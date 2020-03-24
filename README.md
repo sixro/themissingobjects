@@ -14,6 +14,12 @@ Summary
 
 A small library containing Java objects I'm missing the most.
 
+Some objects contained in this library are `Money`, `Interval`, `Percentage`, `ISIN`, `ExchangeRate`, etc...  
+The main characteristic of these objects is that they represent a specific unique concept 
+in the real world or that they are pretty the same in almost every [bounded context](https://martinfowler.com/bliki/BoundedContext.html).
+
+Another criteria used to consider an object suitable for this library is that all objects provided by `themissingobjects` have to be written in pure java (no additional dependencies allowed).
+
 
 <a name="documentation" />Documentation
 -----------------------------------------
