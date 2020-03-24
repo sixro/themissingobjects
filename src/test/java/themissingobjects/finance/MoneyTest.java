@@ -1,5 +1,6 @@
 package themissingobjects.finance;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import themissingobjects.math.BigDecimalAsserts;
 
@@ -8,6 +9,8 @@ import java.text.ParseException;
 import java.util.Currency;
 import java.util.Locale;
 
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.*;
 
 public class MoneyTest {
@@ -43,13 +46,16 @@ public class MoneyTest {
     }
 
     @Test public void textual_representation() {
-        String text = new Money(123456, EUR).toString(Locale.US);
         // NOTE: unfortunately Java does not guarantee the same behaviour even if you specify the Locale.
-        assertTrue(text.equals("€1,234.56") || text.equals("EUR1,234.56"));
-        assertEquals("£1,234.56", new Money(123456, GBP).toString(Locale.US));
-        assertEquals("$1,234.56", new Money(123456, USD).toString(Locale.US));
+        assertCurrency(new Money(123456, EUR).toString(Locale.US), "1,234.56", "€", "EUR");
+        assertCurrency(new Money(123456, GBP).toString(Locale.US), "1,234.56", "£", "GBP");
+        assertCurrency(new Money(123456, USD).toString(Locale.US), "1,234.56", "$", "USD");
         assertEquals("USD1.234,56", new Money(123456, USD).toString(Locale.ITALY));
         assertEquals("BHD123.456", new Money(123456, Currency.getInstance("BHD")).toString(Locale.US));
+    }
+
+    private void assertCurrency(String text, String numberAsText, String symbol, String iso) {
+        assertThat(text, allOf(containsString(numberAsText), CoreMatchers.anyOf(containsString(symbol), containsString(iso))));
     }
 
     @Test public void created_by_bigdecimal() {
