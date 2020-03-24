@@ -107,7 +107,7 @@ public class SmartDecimalFormat extends DecimalFormat {
 
     // TODO optimize 'cause this is bad
     public static Currency currencyBySymbol(String currencySymbol, Locale locale) {
-        System.out.println("returning currency of symbol '" + currencySymbol + "' in locale " + locale);
+        System.out.println("returning currency of symbol '" + currencySymbol + "' in locale " + locale + " (default locale is: " + Locale.getDefault() + ")");
         Set<Currency> currencies = Currency.getAvailableCurrencies();
         System.out.println("Available currencies: " + currencies);
         Map<String, Currency> currencyBySymbol = new HashMap<>();
