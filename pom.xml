@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.sixro</groupId>
     <artifactId>themissingobjects</artifactId>
-    <version>0.0.8-SNAPSHOT</version>
+    <version>0.0.8</version>
 
     <name>The missing objects</name>
     <description>A small library containing java objects I am missing the most </description>
@@ -41,7 +41,7 @@
         <connection>scm:git:ssh://git@github.com/sixro/themissingobjects.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/sixro/themissingobjects.git</developerConnection>
         <url>git@github.com:sixro/themissingobjects.git</url>
-        <tag>v0.0.3</tag>
+        <tag>v0.0.8</tag>
     </scm>
 
     <distributionManagement>
