@@ -102,20 +102,24 @@ public class SmartDecimalFormat extends DecimalFormat {
         }
     }
 
-    // TODO optimize 'cause this is bad
     public static Currency currencyBySymbol(String currencySymbol, Locale locale) {
-        Set<Currency> currencies = Currency.getAvailableCurrencies();
-        Map<String, Currency> currencyBySymbol = new HashMap<>();
-        for (Currency c: currencies)
-            currencyBySymbol.put(c.getSymbol(locale), c);
-
-        // TODO add other known symbols
-        currencyBySymbol.put("€", Currency.getInstance("EUR"));
-        currencyBySymbol.put("£", Currency.getInstance("GBP"));
-        currencyBySymbol.put("$", Currency.getInstance("USD"));
-
+        Map<String, Currency> currencyBySymbol = newCurrencyBySymbol(locale);
         Currency currency = currencyBySymbol.get(currencySymbol);
         return currency;
+    }
+
+    private static Map<String, Currency> newCurrencyBySymbol(Locale locale) {
+        Set<Currency> currencies = Currency.getAvailableCurrencies();
+        Map<String, Currency> map = new HashMap<>();
+        for (Currency c: currencies)
+            map.put(c.getSymbol(locale), c);
+
+        map.put("€", Currency.getInstance("EUR"));
+        map.put("£", Currency.getInstance("GBP"));
+        map.put("$", Currency.getInstance("USD"));
+        map.put("¥", Currency.getInstance("JPY"));
+
+        return map;
     }
 
 }
