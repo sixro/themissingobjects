@@ -1,12 +1,15 @@
 package themissingobjects.finance;
 
+import java.io.Serializable;
 import java.util.Currency;
 import java.util.Objects;
 
 /**
  * Represents a <a href="https://en.wikipedia.org/wiki/Currency_pair" >currency pair</a> such as {@code EUR/USD}.
  */
-public class CurrencyPair {
+public class CurrencyPair implements Comparable<CurrencyPair>, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final Currency base;
     private final Currency quote;
@@ -51,6 +54,14 @@ public class CurrencyPair {
 
     public Currency quote() {
         return quote;
+    }
+
+    @Override
+    public int compareTo(CurrencyPair o) {
+        int cbase = base.getCurrencyCode().compareTo(o.base.getCurrencyCode());
+        if (cbase != 0)
+            return cbase;
+        return quote.getCurrencyCode().compareTo(o.quote.getCurrencyCode());
     }
 
     @Override

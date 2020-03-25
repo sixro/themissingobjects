@@ -5,11 +5,11 @@ import org.junit.Test;
 import themissingobjects.math.BigDecimalAsserts;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class QuoteTest {
-
-    public static final Quote _10 = Quote.valueOf(10);
-    public static final Quote _1 = Quote.valueOf(1);
 
     @Test public void represents_algo_maximum_BTC() {
         BigDecimal value = new BigDecimal("20999999.9769");
@@ -30,24 +30,30 @@ public class QuoteTest {
     }
 
     @Test public void plus() {
-        Assert.assertEquals(Quote.valueOf(11), _10.plus(_1));
-        Assert.assertEquals(Quote.valueOf(new BigDecimal("12.3")), Quote.valueOf(new BigDecimal("2.3")).plus(_10));
-        Assert.assertEquals(Quote.valueOf(new BigDecimal("12.3")), _10.plus(Quote.valueOf(new BigDecimal("2.3"))));
+        Assert.assertEquals(Quote.valueOf(11), Quote.TEN.plus(Quote.ONE));
+        Assert.assertEquals(Quote.valueOf(new BigDecimal("12.3")), Quote.valueOf(new BigDecimal("2.3")).plus(Quote.TEN));
+        Assert.assertEquals(Quote.valueOf(new BigDecimal("12.3")), Quote.TEN.plus(Quote.valueOf(new BigDecimal("2.3"))));
     }
 
     @Test public void minus() {
-        Assert.assertEquals(Quote.valueOf(9), _10.minus(_1));
-        Assert.assertEquals(Quote.valueOf(new BigDecimal("-7.7")), Quote.valueOf(new BigDecimal("2.3")).minus(_10));
-        Assert.assertEquals(Quote.valueOf(new BigDecimal("7.7")), _10.minus(Quote.valueOf(new BigDecimal("2.3"))));
+        Assert.assertEquals(Quote.valueOf(9), Quote.TEN.minus(Quote.ONE));
+        Assert.assertEquals(Quote.valueOf(new BigDecimal("-7.7")), Quote.valueOf(new BigDecimal("2.3")).minus(Quote.TEN));
+        Assert.assertEquals(Quote.valueOf(new BigDecimal("7.7")), Quote.TEN.minus(Quote.valueOf(new BigDecimal("2.3"))));
     }
 
     @Test public void times() {
-        Assert.assertEquals(_10, _1.times(10));
-        Assert.assertEquals(Quote.valueOf(111), _10.times(new BigDecimal("11.1")));
+        Assert.assertEquals(Quote.TEN, Quote.ONE.times(10));
+        Assert.assertEquals(Quote.valueOf(111), Quote.TEN.times(new BigDecimal("11.1")));
     }
 
     @Test public void equality() {
         Assert.assertEquals(Quote.valueOf(new BigDecimal("7.7")), Quote.valueOf(new BigDecimal("7.70000")));
+    }
+
+    @Test public void comparable() {
+        List<Quote> l = Arrays.asList(Quote.TEN, Quote.ONE);
+        Collections.sort(l);
+        Assert.assertEquals(Quote.ONE, l.get(0));
     }
 
 }

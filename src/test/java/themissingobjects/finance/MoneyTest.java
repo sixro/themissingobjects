@@ -7,8 +7,7 @@ import themissingobjects.math.BigDecimalAsserts;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
-import java.util.Currency;
-import java.util.Locale;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -83,21 +82,37 @@ public class MoneyTest {
 
     @Test public void convert_from_base_to_quote() {
         Money _10eur = Money.valueOf(10, EUR);
-        ExchangeRate rate = new ExchangeRate(Quote.valueOf(new BigDecimal("10.1234")), CurrencyPair.valueOf("EUR/BHD"), IGNORE_TIMESTAMP);
+        ExchangeRate rate = ExchangeRate.valueOf(Quote.valueOf(new BigDecimal("10.1234")), CurrencyPair.valueOf("EUR/BHD"), IGNORE_TIMESTAMP);
         assertEquals(Money.valueOf(new BigDecimal("101.234"), BHD), _10eur.convert(rate));
     }
 
     @Test public void convert_from_quote_to_base() {
         Money _xBHD = Money.valueOf(new BigDecimal("10.189"), BHD);
-        ExchangeRate rate = new ExchangeRate(Quote.valueOf(10), CurrencyPair.valueOf("EUR/BHD"), IGNORE_TIMESTAMP);
+        ExchangeRate rate = ExchangeRate.valueOf(Quote.TEN, CurrencyPair.valueOf("EUR/BHD"), IGNORE_TIMESTAMP);
         assertEquals(Money.valueOf(new BigDecimal("1.02"), EUR), _xBHD.convert(rate));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void wrong_exchange_rate() {
         Money _10usd = Money.valueOf(10, USD);
-        ExchangeRate rate = new ExchangeRate(Quote.valueOf(10), CurrencyPair.valueOf("EUR/GBP"), IGNORE_TIMESTAMP);
+        ExchangeRate rate = ExchangeRate.valueOf(Quote.TEN, CurrencyPair.valueOf("EUR/GBP"), IGNORE_TIMESTAMP);
         _10usd.convert(rate);
+    }
+
+    @Test public void comparable() {
+        Money _1 = Money.valueOf(1, EUR);
+        Money _10 = Money.valueOf(10, EUR);
+        List<Money> l = Arrays.asList(_10, _1);
+        Collections.sort(l);
+        assertEquals(_1, l.get(0));
+    }
+
+    @Test public void comparable_on_different_currencies() {
+        Money _10eur = Money.valueOf(10, EUR);
+        Money _1usd = Money.valueOf(1, USD);
+        List<Money> l = Arrays.asList(_10eur, _1usd);
+        Collections.sort(l);
+        assertEquals(_10eur, l.get(0));
     }
 
 }

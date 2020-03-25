@@ -1,5 +1,6 @@
 package themissingobjects.finance;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -33,7 +34,9 @@ import java.util.*;
  * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
-public class Money {
+public class Money implements Comparable<Money>, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private static final Map<Integer, Integer> MULTIPLIER_BY_FRACTION_DIGITS = new HashMap<Integer, Integer>() {{
         put(0, 1);
@@ -213,6 +216,14 @@ public class Money {
         }
 
         throw new IllegalArgumentException("exchange rate must be related to currency of this money (found " + rate + " while this currency is " + currency + ")");
+    }
+
+    @Override
+    public int compareTo(Money o) {
+        int c = currency.getCurrencyCode().compareTo(o.currency.getCurrencyCode());
+        if (c != 0)
+            return c;
+        return Long.compare(value, o.value);
     }
 
     @Override

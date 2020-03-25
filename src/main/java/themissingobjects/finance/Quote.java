@@ -7,9 +7,15 @@ import java.util.Objects;
 /**
  * Represents a <a href="https://en.wikipedia.org/wiki/Financial_quote" >quote</a>.
  */
-public class Quote implements Serializable {
+public class Quote implements Comparable<Quote>, Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static final Quote ZERO = Quote.valueOf(0);
+    public static final Quote ONE = Quote.valueOf(1);
+    public static final Quote TEN = Quote.valueOf(10);
+    public static final Quote ONE_HUNDRED = Quote.valueOf(100);
+    public static final Quote ONE_THOUSAND = Quote.valueOf(1000);
 
     private final long value;
     private final int fractionDigits;
@@ -55,6 +61,11 @@ public class Quote implements Serializable {
 
     public BigDecimal toBigDecimal() {
         return BigDecimal.valueOf(value).movePointLeft(fractionDigits);
+    }
+
+    @Override
+    public int compareTo(Quote o) {
+        return Long.compare(value, o.value);
     }
 
     @Override
