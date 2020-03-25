@@ -18,4 +18,10 @@ public class CurrencyPairTest {
     public void construction_failure() {
         CurrencyPair.valueOf("Oh nooooooo");
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void construction_failure_due_too_many_currencies() {
+        CurrencyPair.valueOf("EUR/USD/JPY");
+    }
+
 }

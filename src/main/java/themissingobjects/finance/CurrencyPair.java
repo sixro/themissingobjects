@@ -18,14 +18,30 @@ public class CurrencyPair {
         this.quote = quote;
     }
 
+    /**
+     * Returns a {@code CurrencyPair} built with the specified currencies.
+     *
+     * @param base the base currency
+     * @param quote the quote currency
+     * @return a {@code CurrencyPair}
+     */
     public static CurrencyPair valueOf(Currency base, Currency quote) {
         return new CurrencyPair(base, quote);
     }
 
-    public static CurrencyPair valueOf(String textual) {
-        if (! textual.contains("/"))
-            throw new IllegalArgumentException("'textual' does not represent a currency pair (got '" + textual + "', expected '<base>/<quote>')");
-        String[] parts = textual.split("/");
+    /**
+     * Returns a {@code CurrencyPair} parsing the specified text (for example {@code EUR/USD}).
+     *
+     * @param text a textual representation of a currency pair
+     * @return a {@code CurrencyPair}
+     */
+    public static CurrencyPair valueOf(String text) {
+        if (! text.contains("/"))
+            throw new IllegalArgumentException("'text' does not represent a currency pair (got '" + text + "', expected '<base>/<quote>')");
+        String[] parts = text.split("/");
+        if (parts.length != 2)
+            throw new IllegalArgumentException("'text' does not represent a currency pair (got '" + text + "', expected '<base>/<quote>')");
+
         return valueOf(Currency.getInstance(parts[0]), Currency.getInstance(parts[1]));
     }
 
