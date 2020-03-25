@@ -6,6 +6,9 @@ import java.util.Objects;
 
 /**
  * Represents an <a href="https://en.wikipedia.org/wiki/Exchange_rate" >exchange rate</a>.
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
  */
 public class ExchangeRate implements Comparable<ExchangeRate>, Serializable {
 

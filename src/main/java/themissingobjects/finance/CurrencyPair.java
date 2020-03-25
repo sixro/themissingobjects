@@ -6,7 +6,10 @@ import java.util.Objects;
 
 /**
  * Represents a <a href="https://en.wikipedia.org/wiki/Currency_pair" >currency pair</a> such as {@code EUR/USD}.
- */
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
+ ``*/
 public class CurrencyPair implements Comparable<CurrencyPair>, Serializable {
 
     private static final long serialVersionUID = 1L;

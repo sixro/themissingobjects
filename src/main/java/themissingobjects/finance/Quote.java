@@ -5,7 +5,10 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- * Represents a <a href="https://en.wikipedia.org/wiki/Financial_quote" >quote</a>.
+ * Represents a <a href="https://en.wikipedia.org/wiki/Financial_quote" >financial quote</a>.
+ *
+ * @author <a href="mailto:me@sixro.net" >Sixro</a>
+ * @since 1.0
  */
 public class Quote implements Comparable<Quote>, Serializable {
 

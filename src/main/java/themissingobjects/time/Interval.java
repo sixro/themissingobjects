@@ -9,6 +9,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+// TODO add union: the intervals must be connected
+// TODO add intersection: the intervals must be connected
+// TODO add isConnected? I have to think about it
+// TODO add overlaps
+// TODO add isBefore
+// TODO add isAfter
+// TODO add conversions to other JavaTime objects such as Duration for example...
+
 /**
  * Represents an interval of {@code Temporal}s.
  *
