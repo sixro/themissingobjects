@@ -30,8 +30,8 @@ public class ExchangeRate implements Comparable<ExchangeRate>, Serializable {
      * @param currencyPair a {@link CurrencyPair}
      * @return an exchange rate
      */
-    public static ExchangeRate valueOf(Quote quote, CurrencyPair currencyPair) {
-        return valueOf(quote, currencyPair, ZonedDateTime.now());
+    public static ExchangeRate of(Quote quote, CurrencyPair currencyPair) {
+        return of(quote, currencyPair, ZonedDateTime.now());
     }
 
     /**
@@ -41,7 +41,7 @@ public class ExchangeRate implements Comparable<ExchangeRate>, Serializable {
      * @param timestamp a timestamp
      * @return an exchange rate
      */
-    public static ExchangeRate valueOf(Quote quote, CurrencyPair currencyPair, ZonedDateTime timestamp) {
+    public static ExchangeRate of(Quote quote, CurrencyPair currencyPair, ZonedDateTime timestamp) {
         return new ExchangeRate(quote, currencyPair, timestamp);
     }
 

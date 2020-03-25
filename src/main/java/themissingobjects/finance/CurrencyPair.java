@@ -31,7 +31,7 @@ public class CurrencyPair implements Comparable<CurrencyPair>, Serializable {
      * @param quote the quote currency
      * @return a {@code CurrencyPair}
      */
-    public static CurrencyPair valueOf(Currency base, Currency quote) {
+    public static CurrencyPair of(Currency base, Currency quote) {
         return new CurrencyPair(base, quote);
     }
 
@@ -41,14 +41,14 @@ public class CurrencyPair implements Comparable<CurrencyPair>, Serializable {
      * @param text a textual representation of a currency pair
      * @return a {@code CurrencyPair}
      */
-    public static CurrencyPair valueOf(String text) {
+    public static CurrencyPair parse(String text) {
         if (! text.contains("/"))
             throw new IllegalArgumentException("'text' does not represent a currency pair (got '" + text + "', expected '<base>/<quote>')");
         String[] parts = text.split("/");
         if (parts.length != 2)
             throw new IllegalArgumentException("'text' does not represent a currency pair (got '" + text + "', expected '<base>/<quote>')");
 
-        return valueOf(Currency.getInstance(parts[0]), Currency.getInstance(parts[1]));
+        return of(Currency.getInstance(parts[0]), Currency.getInstance(parts[1]));
     }
 
     public Currency base() {

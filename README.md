@@ -50,6 +50,12 @@ You can read the Javadoc of:
   * [0.0.7](https://oss.sonatype.org/service/local/repositories/releases/archive/com/github/sixro/themissingobjects/0.0.7/themissingobjects-0.0.7-javadoc.jar/!/index.html): stable version (alpha)
   * [0.0.8-SNAPSHOT](https://oss.sonatype.org/service/local/repositories/snapshots/archive/com/github/sixro/themissingobjects/0.0.8-SNAPSHOT/themissingobjects-0.0.8-20200324.212928-1-javadoc.jar/!/index.html): unstable version
 
+I am a fan of Javadoc since I started programming with Java and I do not agree that it is a useless things even if you 
+write _clean code_. I have my style influenced by the communication style used in Javadoc of Java. Some years ago, I started 
+following [these rules](https://blog.joda.org/2012/11/javadoc-coding-standards.html) shared by Stephen Colebourne 
+author of JodaTime.  
+Let me know if something is not clear.
+
 
 <a name="release" />Release
 -----------------------------

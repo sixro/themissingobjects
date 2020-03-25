@@ -7,6 +7,14 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.*;
 
+// TODO abandon the idea of printing/parsing the currency symbol (see later)
+//      Unfortunately even using the Locale explicitely in format/parsing there are different representations.
+//      For example with all tests green the behaviour on Github was different.
+//      The only differences from my local workstation and Github was the default locale that I was not involving in
+//      my code.
+//      So I think it is better to stick to the format "<currency> <value>", because it is really dangerous not
+//      having a unique/single behaviour.
+
 /**
  * Represents monetary values.
  *
@@ -67,7 +75,7 @@ public class Money implements Comparable<Money>, Serializable {
      * @param currency a currency
      * @return a {@code Money}
      */
-    public static Money valueOf(BigDecimal value, Currency currency) {
+    public static Money of(BigDecimal value, Currency currency) {
         Objects.requireNonNull(value);
         Objects.requireNonNull(currency);
         return new Money(value.movePointRight(currency.getDefaultFractionDigits()).longValue(), currency);
@@ -83,7 +91,7 @@ public class Money implements Comparable<Money>, Serializable {
      * @param currency a currency
      * @return a {@code Money}
      */
-    public static Money valueOf(int valueWithoutFractionDigits, Currency currency) {
+    public static Money of(int valueWithoutFractionDigits, Currency currency) {
         Integer m = MULTIPLIER_BY_FRACTION_DIGITS.get(currency.getDefaultFractionDigits());
         return new Money(valueWithoutFractionDigits * m, currency);
     }
@@ -115,7 +123,7 @@ public class Money implements Comparable<Money>, Serializable {
         DecimalFormat df = new SmartDecimalFormat("¤#,##0.###", locale);
         df.setParseBigDecimal(true);
         BigDecimal parsed = (BigDecimal) df.parse(text);
-        return Money.valueOf(parsed, df.getCurrency());
+        return Money.of(parsed, df.getCurrency());
     }
 
     /**
@@ -208,11 +216,11 @@ public class Money implements Comparable<Money>, Serializable {
         Currency base = rate.currencyPair().base();
         if (currency.equals(base)) {
             BigDecimal v = toBigDecimal().multiply(rate.quote().toBigDecimal());
-            return valueOf(v, rate.currencyPair().quote());
+            return of(v, rate.currencyPair().quote());
         }
         if (currency.equals(rate.currencyPair().quote())) {
             BigDecimal v = toBigDecimal().divide(rate.quote().toBigDecimal(), base.getDefaultFractionDigits(), RoundingMode.HALF_UP);
-            return valueOf(v, base);
+            return of(v, base);
         }
 
         throw new IllegalArgumentException("exchange rate must be related to currency of this money (found " + rate + " while this currency is " + currency + ")");

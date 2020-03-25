@@ -14,11 +14,11 @@ public class Quote implements Comparable<Quote>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final Quote ZERO = Quote.valueOf(0);
-    public static final Quote ONE = Quote.valueOf(1);
-    public static final Quote TEN = Quote.valueOf(10);
-    public static final Quote ONE_HUNDRED = Quote.valueOf(100);
-    public static final Quote ONE_THOUSAND = Quote.valueOf(1000);
+    public static final Quote ZERO = Quote.of(0);
+    public static final Quote ONE = Quote.of(1);
+    public static final Quote TEN = Quote.of(10);
+    public static final Quote ONE_HUNDRED = Quote.of(100);
+    public static final Quote ONE_THOUSAND = Quote.of(1000);
 
     private final long value;
     private final int fractionDigits;
@@ -28,12 +28,12 @@ public class Quote implements Comparable<Quote>, Serializable {
         this.fractionDigits = fractionDigits;
     }
 
-    public static Quote valueOf(BigDecimal value) {
+    public static Quote of(BigDecimal value) {
         int fractionDigits = value.scale();
         return new Quote(value.movePointRight(fractionDigits).longValue(), fractionDigits);
     }
 
-    public static Quote valueOf(int value) {
+    public static Quote of(int value) {
         return new Quote(value, 0);
     }
 
@@ -59,7 +59,7 @@ public class Quote implements Comparable<Quote>, Serializable {
 
     public Quote times(BigDecimal multiplier) {
         BigDecimal result = toBigDecimal().multiply(multiplier);
-        return valueOf(result);
+        return of(result);
     }
 
     public BigDecimal toBigDecimal() {

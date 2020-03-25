@@ -26,7 +26,7 @@ public class ISIN {
      * @param code an ISIN code
      * @return an {@code ISIN}
      */
-    public static ISIN valueOf(String code) {
+    public static ISIN fromString(String code) {
         return new ISIN(code);
     }
 

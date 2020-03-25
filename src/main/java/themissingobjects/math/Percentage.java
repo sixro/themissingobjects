@@ -40,14 +40,14 @@ public class Percentage implements Comparable<Percentage>, Serializable {
      * @param textualRepresentation a percentage textual representation
      * @return a percentage
      * 
-     * @see #valueOf(int)
+     * @see #of(int)
      */
-    public static Percentage valueOf(String textualRepresentation) {
+    public static Percentage of(String textualRepresentation) {
         DecimalFormat decimalFormat = newDecimalFormat();
         BigDecimal p = (BigDecimal) decimalFormat.parse(textualRepresentation, new ParsePosition(0));
         BigDecimal asInt = p.multiply(_100);
         boolean isInteger = asInt.stripTrailingZeros().scale() <= 0;
-        return isInteger ? valueOf(asInt.intValue()) : new Percentage(p);
+        return isInteger ? of(asInt.intValue()) : new Percentage(p);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Percentage implements Comparable<Percentage>, Serializable {
      * @param v the percentage expressed as BigDecimal
      * @return a percentage
      */
-    public static Percentage valueOf(BigDecimal v) {
+    public static Percentage of(BigDecimal v) {
         return new Percentage(v);
     }
 
@@ -66,8 +66,8 @@ public class Percentage implements Comparable<Percentage>, Serializable {
      * @param v the percentage expressed as double
      * @return a percentage
      */
-    public static Percentage valueOf(double v) {
-        return valueOf(BigDecimal.valueOf(v));
+    public static Percentage of(double v) {
+        return of(BigDecimal.valueOf(v));
     }
 
     /**
@@ -81,7 +81,7 @@ public class Percentage implements Comparable<Percentage>, Serializable {
      * @param v the percentage expressed as int
      * @return a percentage
      */
-    public static Percentage valueOf(int v) {
+    public static Percentage of(int v) {
         Percentage percentage = CACHED.get(v);
         if (percentage != null)
             return percentage;
@@ -95,7 +95,7 @@ public class Percentage implements Comparable<Percentage>, Serializable {
      * @param v the starting value on which this percentage has to be applied
      * @return the number calculated applying this percentage
      */
-    public BigDecimal of(BigDecimal v) {
+    public BigDecimal calculateOn(BigDecimal v) {
         return value.multiply(v);
     }
 
@@ -107,7 +107,7 @@ public class Percentage implements Comparable<Percentage>, Serializable {
      * @param roundingMode the rounding mode to apply
      * @return the number calculated applying this percentage
      */
-    public BigDecimal of(BigDecimal v, int scale, RoundingMode roundingMode) {
+    public BigDecimal calculateOn(BigDecimal v, int scale, RoundingMode roundingMode) {
         BigDecimal multiplied = value.multiply(v);
         return multiplied.setScale(scale, roundingMode);
     }

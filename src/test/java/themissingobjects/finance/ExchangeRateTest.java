@@ -1,6 +1,5 @@
 package themissingobjects.finance;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -16,26 +15,26 @@ public class ExchangeRateTest {
 
     @Test public void equality() {
         ZonedDateTime now = ZonedDateTime.now();
-        assertEquals(ExchangeRate.valueOf(Quote.ONE, CurrencyPair.valueOf("EUR/EUR"), now), ExchangeRate.valueOf(Quote.valueOf(new BigDecimal("1.0")), CurrencyPair.valueOf("EUR/EUR"), now));
+        assertEquals(ExchangeRate.of(Quote.ONE, CurrencyPair.parse("EUR/EUR"), now), ExchangeRate.of(Quote.of(new BigDecimal("1.0")), CurrencyPair.parse("EUR/EUR"), now));
     }
 
     @Test public void textual_representation() {
         ZonedDateTime now = ZonedDateTime.now();
-        ExchangeRate rate = ExchangeRate.valueOf(Quote.ONE, CurrencyPair.valueOf("EUR/EUR"), now);
+        ExchangeRate rate = ExchangeRate.of(Quote.ONE, CurrencyPair.parse("EUR/EUR"), now);
         assertThat(rate.toString(), containsString("EUR/EUR@1"));
     }
 
     @Test public void comparable_on_timestamp() {
-        ExchangeRate rate1 = ExchangeRate.valueOf(Quote.ONE, CurrencyPair.valueOf("EUR/EUR"), ZonedDateTime.parse("2019-01-01T00:00:00.000Z"));
-        ExchangeRate rate2 = ExchangeRate.valueOf(Quote.TEN, CurrencyPair.valueOf("EUR/EUR"), ZonedDateTime.parse("2018-01-01T00:00:00.000Z"));
+        ExchangeRate rate1 = ExchangeRate.of(Quote.ONE, CurrencyPair.parse("EUR/EUR"), ZonedDateTime.parse("2019-01-01T00:00:00.000Z"));
+        ExchangeRate rate2 = ExchangeRate.of(Quote.TEN, CurrencyPair.parse("EUR/EUR"), ZonedDateTime.parse("2018-01-01T00:00:00.000Z"));
         List<ExchangeRate> rates = Arrays.asList(rate1, rate2);
         Collections.sort(rates);
         assertEquals(rate2, rates.get(0));
     }
 
     @Test public void comparable_on_pair() {
-        ExchangeRate rate1 = ExchangeRate.valueOf(Quote.ONE, CurrencyPair.valueOf("EUR/EUR"), ZonedDateTime.parse("2019-01-01T00:00:00.000Z"));
-        ExchangeRate rate2 = ExchangeRate.valueOf(Quote.TEN, CurrencyPair.valueOf("EUR/USD"), ZonedDateTime.parse("2018-01-01T00:00:00.000Z"));
+        ExchangeRate rate1 = ExchangeRate.of(Quote.ONE, CurrencyPair.parse("EUR/EUR"), ZonedDateTime.parse("2019-01-01T00:00:00.000Z"));
+        ExchangeRate rate2 = ExchangeRate.of(Quote.TEN, CurrencyPair.parse("EUR/USD"), ZonedDateTime.parse("2018-01-01T00:00:00.000Z"));
         List<ExchangeRate> rates = Arrays.asList(rate2, rate1);
         Collections.sort(rates);
         assertEquals(rate1, rates.get(0));
