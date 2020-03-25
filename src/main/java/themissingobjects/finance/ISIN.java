@@ -1,5 +1,6 @@
 package themissingobjects.finance;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,9 @@ import java.util.Objects;
  * @author <a href="mailto:me@sixro.net" >Sixro</a>
  * @since 1.0
  */
-public class ISIN {
+public class ISIN implements Comparable<ISIN>, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final String code;
 
@@ -42,6 +45,11 @@ public class ISIN {
 
         if (checkDigit != calculatedCheckDigit)
             throw new IllegalArgumentException("ISIN " + code + " is not a valid code (check digit " + checkDigit + " differs from calculated digit " + calculatedCheckDigit);
+    }
+
+    @Override
+    public int compareTo(ISIN o) {
+        return code.compareTo(o.code);
     }
 
     @Override
