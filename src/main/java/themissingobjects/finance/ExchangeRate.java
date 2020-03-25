@@ -29,5 +29,4 @@ public class ExchangeRate {
         return timestamp;
     }
 
-    // TODO impl
 }

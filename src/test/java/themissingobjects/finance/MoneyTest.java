@@ -1,5 +1,6 @@
 package themissingobjects.finance;
 
+import java.time.ZonedDateTime;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import themissingobjects.math.BigDecimalAsserts;
@@ -24,7 +25,9 @@ public class MoneyTest {
     public static final Money _3EUR = new Money(300, EUR);
 
     public static final Money _1GBP = new Money(100, GBP);
-    public static final Money _2GBP = new Money(200, GBP);
+
+    public static final ZonedDateTime IGNORE_TIMESTAMP = ZonedDateTime.now();
+    public static final Currency BHD = Currency.getInstance("BHD");
 
     @Test public void plus() {
         assertEquals(_3EUR, _1EUR.plus(_2EUR));
@@ -51,7 +54,7 @@ public class MoneyTest {
         assertCurrency(new Money(123456, GBP).toString(Locale.US), "1,234.56", "£", "GBP");
         assertCurrency(new Money(123456, USD).toString(Locale.US), "1,234.56", "$", "USD");
         assertEquals("USD1.234,56", new Money(123456, USD).toString(Locale.ITALY));
-        assertEquals("BHD123.456", new Money(123456, Currency.getInstance("BHD")).toString(Locale.US));
+        assertEquals("BHD123.456", new Money(123456, BHD).toString(Locale.US));
     }
 
     private void assertCurrency(String text, String numberAsText, String symbol, String iso) {
@@ -76,6 +79,25 @@ public class MoneyTest {
 
     @Test public void toBigDecimal() throws ParseException {
         BigDecimalAsserts.assertBigDecimalEquals("toBigDecimal", new BigDecimal("1.230"), Money.parse("€1.23", Locale.US).toBigDecimal());
+    }
+
+    @Test public void convert_from_base_to_quote() {
+        Money _10eur = Money.valueOf(10, EUR);
+        ExchangeRate rate = new ExchangeRate(Quote.valueOf(new BigDecimal("10.1234")), CurrencyPair.valueOf("EUR/BHD"), IGNORE_TIMESTAMP);
+        assertEquals(Money.valueOf(new BigDecimal("101.234"), BHD), _10eur.convert(rate));
+    }
+
+    @Test public void convert_from_quote_to_base() {
+        Money _xBHD = Money.valueOf(new BigDecimal("10.189"), BHD);
+        ExchangeRate rate = new ExchangeRate(Quote.valueOf(10), CurrencyPair.valueOf("EUR/BHD"), IGNORE_TIMESTAMP);
+        assertEquals(Money.valueOf(new BigDecimal("1.02"), EUR), _xBHD.convert(rate));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void wrong_exchange_rate() {
+        Money _10usd = Money.valueOf(10, USD);
+        ExchangeRate rate = new ExchangeRate(Quote.valueOf(10), CurrencyPair.valueOf("EUR/GBP"), IGNORE_TIMESTAMP);
+        _10usd.convert(rate);
     }
 
 }

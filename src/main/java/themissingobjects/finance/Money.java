@@ -1,6 +1,7 @@
 package themissingobjects.finance;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.*;
@@ -167,19 +168,56 @@ public class Money {
                 Objects.equals(currency, money.currency);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, currency);
-    }
-
     /**
-     * Returns this money as a {@link BigDecimal}.
+     * Transform this money to the {@link BigDecimal} representing its value.
      *
      * @return a {@link BigDecimal}
      */
     public BigDecimal toBigDecimal() {
         int fractionDigits = currency.getDefaultFractionDigits();
         return BigDecimal.valueOf(value).movePointLeft(fractionDigits);
+    }
+
+    /**
+     * Returns the {@link Currency}.
+     *
+     * @return a {@link Currency}
+     */
+    public Currency currency() {
+        return currency;
+    }
+
+    /**
+     * Returns the converted money using specified exchange rate.
+     *
+     * <p>
+     * This operation is able to convert to {@code quote} or {@code base} according to the
+     * actual currency. So, calling this to a {@code 10 EUR} with an exchange rate of
+     * {@code 10 EUR/USD} will return {@code 100 USD}, while calling this to a {@code 10 USD} with
+     * the same exchange rate ({@code 10 EUR/USD}) will return {@code 1 EUR}.
+     * </p>
+     *
+     * @param rate an exchange rate
+     * @return a money of the alternate currency found in the currency pair of the specified exchange rate
+     * @throws IllegalArgumentException if the specified {@link ExchangeRate} is on a {@link CurrencyPair} not related to the currency of this money
+     */
+    public Money convert(ExchangeRate rate) {
+        Currency base = rate.currencyPair().base();
+        if (currency.equals(base)) {
+            BigDecimal v = toBigDecimal().multiply(rate.quote().toBigDecimal());
+            return valueOf(v, rate.currencyPair().quote());
+        }
+        if (currency.equals(rate.currencyPair().quote())) {
+            BigDecimal v = toBigDecimal().divide(rate.quote().toBigDecimal(), base.getDefaultFractionDigits(), RoundingMode.HALF_UP);
+            return valueOf(v, base);
+        }
+
+        throw new IllegalArgumentException("exchange rate must be related to currency of this money (found " + rate + " while this currency is " + currency + ")");
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, currency);
     }
 
     @Override
