@@ -1,7 +1,7 @@
 package themissingobjects.finance;
 
 import org.junit.Test;
-import themissingobjects.math.BigDecimalAsserts;
+import testing.BigDecimalAsserts;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

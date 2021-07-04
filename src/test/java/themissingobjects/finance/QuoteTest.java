@@ -2,7 +2,7 @@ package themissingobjects.finance;
 
 import org.junit.Assert;
 import org.junit.Test;
-import themissingobjects.math.BigDecimalAsserts;
+import testing.BigDecimalAsserts;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

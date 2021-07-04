@@ -3,7 +3,7 @@ package themissingobjects.finance;
 import java.time.ZonedDateTime;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
-import themissingobjects.math.BigDecimalAsserts;
+import testing.BigDecimalAsserts;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
