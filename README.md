@@ -31,6 +31,9 @@ a sort of [Object Calisthenics](https://pragprog.com/book/twa/thoughtworks-antho
 
 I hope you'll find something interesting in this library that you can use in your projects.
 
+NOTE: some objects have been moved to [commons-finance](https://github.com/sixro/commons-finance).
+
+
 <a name="criteria-used" />Criteria used
 -----------------------------------
 
